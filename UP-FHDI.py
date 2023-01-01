@@ -1,3 +1,17 @@
+#-----------------------------------------------------------------
+#GUI for UP-FHDI
+#
+#A general-purpose, assumption-free imputation software for curing any incomplete data sets
+# 
+#Version: 1.0
+#Last release date: Dec 31, 2022
+#Developers: Yicheng Yang, In Ho Cho and Qi Li (Iowa State University)
+#Contact: icho@iastate.edu
+#References:
+#Serial version R package FHDI, https://cran.r-project.org/packages=FHDI.
+#Jongho Im, In Ho Cho, and Jaekwang Kim, 2018, The R Journal, Vol.10(1), 140-154. [https://journal.r-project.org/archive/2018/RJ-2018-020/index.html].
+#//-----------------------------------------------------------------
+
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import PhotoImage
@@ -8,13 +22,11 @@ from tinydb import TinyDB, Query
 import os
 import shutil
 import math
+import time
 
 root = tk.Tk()
 root.title("Welcome to UP-FHDI")
 root.geometry("400x510+200+200")
-
-question_image = PhotoImage(file='question3.png')
-resize_image = question_image.subsample(25, 25)
 
 details_cellmake = 'Users can either adopt the cell collapsing method to generate artificial donors or the k-nearest neighbor (KNN) method to find deficient donors in cell construction'
 details_collapsing = 'Users can activate the sure independent screening (SIS) by a user-defined number of selected variables. ' \
@@ -42,7 +54,7 @@ def varName(p):
 def next_page(pages, page_name):
     # move the first page to the end of the list,
     # then show the first page in the list
-    print("page_number after is ", page_name)
+
     Parameter_list = []
 
     if (page_name == "page2"):
@@ -56,8 +68,8 @@ def next_page(pages, page_name):
         parameter_sum = analysis_var1.get() + analysis_var2.get() + analysis_var3.get()
         Parameter_list = [len(Output_text.get()), var_intermediate.get(), parameter_sum]
 
-    print("Parameter_list: ", *Parameter_list)
-    print("next len is ", len(Parameter_list))
+    #print("Parameter_list: ", *Parameter_list)
+    #print("next len is ", len(Parameter_list))
 
     flag = 1
     for x in Parameter_list:
@@ -69,7 +81,7 @@ def next_page(pages, page_name):
             messagebox.showerror("showerror", "# MPI tasks must be less than the number of variables in input data. Please go back to input configuration page and reduce # MPI tasks!")
             return
 
-    print("next flag is ", flag)
+    #print("next flag is ", flag)
     if (flag == 1):
         page = pages.pop(0)
         pages.append(page)
@@ -83,10 +95,10 @@ def next_page(pages, page_name):
 def next_first_page(pages, page_name):
     # move the first page to the end of the list,
     # then show the first page in the list
-    print("page_number after is ", page_name)
+    #print("page_number after is ", page_name)
     Parameter_list = []
     if (page_name == "page1"):
-        print("var_delimiter is", var_delimiter.get())
+        #print("var_delimiter is", var_delimiter.get())
         if (var_miss.get() != 4):
             if (var_delimiter.get() == 4):
                 Parameter_list = [len(Input_text.get()), len(menu.get()), len(separator_text.get()), var_miss.get(),
@@ -102,8 +114,8 @@ def next_first_page(pages, page_name):
                 Parameter_list = [len(Input_text.get()), len(menu.get()), var_delimiter.get(), len(special_text.get()),
                                   MPI_text.get()]
 
-    print(*Parameter_list)
-    print("next len is ", len(Parameter_list))
+    #print(*Parameter_list)
+    #print("next len is ", len(Parameter_list))
 
     flag = 1
     for x in Parameter_list:
@@ -112,7 +124,7 @@ def next_first_page(pages, page_name):
         if x == "":
             flag = 0
 
-    print("next flag is ", flag)
+    #print("next flag is ", flag)
     if (flag == 1):
         page = pages.pop(0)
         pages.append(page)
@@ -136,25 +148,25 @@ def next_first_page(pages, page_name):
         print("Input directory is not accessible when finding the number of column!")
         return
 
-    print("here menu is ", menu.get())
+    #print("here menu is ", menu.get())
     if (menu.get() == "Yes"):
         line1 = file.readline()
     line = file.readline()
-    print("nima separator is ", delimeter_temp)
+
     words = line.split(delimeter_temp)
-    print(words)
+    #print('words:' , words)
     column.set(len(words))
-    # print("Recomd MPI_text is ", int(MPI_text.get()))
-    print("Recomd column is ", column.get())
+    #print("Recomd MPI_text is ", int(MPI_text.get()))
+    #print("Recomd column is ", column.get())
     if MPI_text.get() == "":
-        print("I'm here!")
+        #print("I'm here!")
         return
     elif int(MPI_text.get()) > column.get():
         method_UP_FHDI = "P-FHDI"
-        print("Set ", method_UP_FHDI)
+        #print("Set ", method_UP_FHDI)
     else:
         method_UP_FHDI = "UP-FHDI"
-        print("Set ", method_UP_FHDI)
+        #print("Set ", method_UP_FHDI)
 
     message1 = " The number of variables in input data is " + str(column.get())
     message2 = " The number of requested MPI tasks is " + MPI_text.get()
@@ -162,6 +174,7 @@ def next_first_page(pages, page_name):
     message4 = " your incomplete data"
     message = message1 + '\n' + message2 + '\n' + '\n' + message3 + '\n' + message4
     lablegrame_text.set(message)
+    file.close()
 
 def prev_first_page(pages):
     # move the last page in the list to the front of the list,
@@ -265,24 +278,24 @@ def submit():
     else:
         print("Big ERROR! Current project is not successfully updated to database!!!!!")
 
-    print("Input directory: ", Input_text.get())
-    print("Header: ", menu.get())
-    print("Seperator: ", separator_text.get())
-    print("Missing symbol: ", var_miss.get())
-    print("Special symbol: ", special_text.get())
-    print("Output directory: ", Output_text.get())
-    print("Method: ", var_UP_FHDI.get())
+    # print("Input directory: ", Input_text.get())
+    # print("Header: ", menu.get())
+    # print("Seperator: ", separator_text.get())
+    # print("Missing symbol: ", var_miss.get())
+    # print("Special symbol: ", special_text.get())
+    # print("Output directory: ", Output_text.get())
+    # print("Method: ", var_UP_FHDI.get())
 
     root_folder = ""
     if(PM.get() == 1):
         root_folder = add_text.get()
-        print("I am asked to cretae this directory firstly and root_folder is " + root_folder)
+        #print("I am asked to cretae this directory firstly and root_folder is " + root_folder)
         os.mkdir('./'+ add_text.get())
         os.mkdir('./'+ add_text.get() + '/Temp')
         os.mkdir('./'+ add_text.get() + '/Post')
     else:
         root_folder = load_text.get()
-        print("I am asked to delete this directory firstly and root_folder is " + root_folder)
+        #print("I am asked to delete this directory firstly and root_folder is " + root_folder)
         shutil.rmtree('./'+ load_text.get())
         os.mkdir('./'+ load_text.get())
         os.mkdir('./'+ load_text.get() + '/Temp')
@@ -291,7 +304,7 @@ def submit():
         # os.system("rm -r ./" + load_text.get() + "/Temp/*")
         # os.system("rm -r ./" + load_text.get() + "/Post/*")
 
-
+    #start1 = time.time()
     try:
         file = open(Input_text.get(), "r")
         script = open(Output_text.get() + "Temp/run.sbatch", "w", newline='\n')
@@ -317,7 +330,7 @@ def submit():
         delimeter_temp = ' '
     if (var_delimiter.get() == 4):
         delimeter_temp = separator_text.get()
-    print("delimeter_temp in submit is ", delimeter_temp)
+    #print("delimeter_temp in submit is ", delimeter_temp)
 
     daty = []
     datr = []
@@ -358,6 +371,8 @@ def submit():
         # print(i_out)
         daty.append(d_out)
         datr.append(i_out)
+
+    #start2 = time.time()
 
     if (var_UP_FHDI.get() == 1):
         try:
@@ -413,6 +428,7 @@ def submit():
         buf1 = bytes()
         buf2 = bytes()
         buf3 = bytes()
+
         for i in daty_column:
             buf1 += struct.pack('d', i)
         for i in daty_row:
@@ -426,6 +442,7 @@ def submit():
         file_daty_column.close()
         file_daty_row.close()
         file_datr_column.close()
+    
 
     ###################################
     script.write("#!/bin/bash\n")
@@ -435,6 +452,7 @@ def submit():
     script.write("#SBATCH --time=" + Time_text.get() + '\n')
     script.write("#SBATCH --output=BATCH_OUTPUT\n")
     script.write("#SBATCH --error=BATCH_ERROR\n")
+    script.write("module load intel/18.3\n")
     script.write("mpirun -np " + MPI_text.get() + " ./main_MPI " + root_folder)
 
     ########################################
@@ -540,7 +558,7 @@ def submit():
     #========================
 
     size_GB = (column.get()*len(daty)*8)/(10**9)
-    print("size_GB is ", size_GB)
+    #print("size_GB is ", size_GB)
     time_lower = 0
     time_upper = 0
     residual = 0
@@ -565,10 +583,10 @@ def submit():
                 time_upper = math.ceil((9.6222 * size_GB + 24.56 + residual)/(int(MPI_text.get())))
         
         #Generate time message
-        print("time_lower is ", time_lower)
+        #print("time_lower is ", time_lower)
         if(time_lower < 0):
             time_lower = 0
-        print("time_upper is ", time_upper)
+        #print("time_upper is ", time_upper)
 
         if(time_upper <= 1):
             message_f2 = "less than an hour"
@@ -608,7 +626,7 @@ PM.set(1)
 def PM_call_back(var, index, mode):
     #Set all parameters as empty
     if(PM.get() == 1):
-        print("PM Changed to ", PM.get())
+        #print("PM Changed to ", PM.get())
         Input_text.set("./raw.txt")
         menu.set("")
         var_delimiter.set(0)
@@ -641,9 +659,9 @@ def PM_call_back(var, index, mode):
 
     #Load existing project parameters
     if(PM.get() == 2):
-        print("PM Changed to ", PM.get())
+        #print("PM Changed to ", PM.get())
         LPM = db.search(User.Project == load_text.get())
-        print(LPM)
+        #print(LPM)
         Input_text.set(LPM[0].get('Input directory'))
         menu.set(LPM[0].get('Header'))
         var_delimiter.set(LPM[0].get('Delimiter'))
@@ -679,7 +697,7 @@ def PM_call_back(var, index, mode):
 
     #Delete an existing project
     if(PM.get() ==3):
-        print("PM Changed to ", PM.get())
+        #print("PM Changed to ", PM.get())
         for x in range(len(load_list)):
             if (load_list[x].get() == 1):
                 db.remove(User.Project == load_name[x])
@@ -776,13 +794,13 @@ def load_project():
 
     def call_back_load(var, index, mode):
         sum_temp = 0
-        print("load_list is ", load_list)
+        #print("load_list is ", load_list)
         if(len(load_list) != len(db)):
             print("ERROR!!! Load_list is incorrect !!!")
 
         for x in load_list:
             sum_temp = sum_temp + x.get()
-        print("sum_temp is ", sum_temp)
+        #print("sum_temp is ", sum_temp)
         if (sum_temp == 1 or sum_temp == 0):
             ok_load_button['state'] = tk.NORMAL
         else:
@@ -885,7 +903,7 @@ Input_label = tk.Label(page1, text="Input directory", font = font_1, bg = '#8224
 Input_label.place(x=50, y=50)
 
 Input_text = tk.StringVar()
-print(len(Input_text.get()))
+#print('NIMA', len(Input_text.get()))
 Input_text.set("./raw.txt")
 textbox_input = tk.Entry(page1, textvariable=Input_text, width=27, bd=0, highlightthickness=0, justify='center', disabledbackground="gray")
 textbox_input.place(x=160, y=50)
@@ -1002,7 +1020,7 @@ Back_p1.place(x=55, y=445)
 Default_p1 = tk.Button(page1, text = "Set default", font = font_1, compound="center", bg='#fdc82f', bd=0, highlightthickness=0, activebackground="goldenrod4", command=lambda: p1_set_default())
 Default_p1.place(x=160, y=445)
 
-print("page_name before is ", varName(page1))
+#print("page_name before is ", varName(page1))
 Next_p1 = tk.Button(page1, text = "Next >", font = font_1, compound="center", bg='#fdc82f', bd=0, highlightthickness=0, activebackground="goldenrod4", command=lambda: next_first_page(pages, varName(page1)))
 Next_p1.place(x=285, y=445)
 

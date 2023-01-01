@@ -34,16 +34,17 @@ fi
 MODULE_INTEL="intel/18.3"
 
 if module list 2>&1| grep -qw "$MODULE_INTEL"; then
-   echo "===========$MODULE_INTEL was already loaded!==========="
+   echo -e "===========$MODULE_INTEL was already loaded!===========\n"
 else
    module load intel/18.3
-   echo "===========$MODULE_INTEL has been successfully loaded!==========="
+   echo -e "===========$MODULE_INTEL has been successfully loaded!===========\n"
 fi
 
 #Run GUI
 python UP-FHDI.py #&
 
 sleep 3 #avoid incorrect COMPLETE print, let bullet fly three second
+echo -e "\n"
 echo "------ Job Status ----"
 sacct -u $USER -n --format State | tail -1
 echo -e "----------------------\n\n"
@@ -57,7 +58,7 @@ do
   #echo $SLURM_JOB_ID
   #squeue -u $USER
 
-  sleep 3 #avoid incorrect COMPLETE print, let bullet fly three second
+  sleep 5 #avoid incorrect COMPLETE print, let bullet fly three second
 
 #   echo "------ Job Status ----"
 #   sacct -u $USER -n --format State | tail -1
@@ -66,20 +67,28 @@ do
   #PENDING
   #RUNNING
   #COMPLETED
-  if [ $(sacct -u $USER -n --format State | tail -1) == "COMPLETED" ]
-  then
+   if [ $(sacct -u $USER -n --format State | tail -1) == "COMPLETED" ]
+   then
       echo "====================================================="
       echo "Job done! Please check output directory for results."
       echo "====================================================="
       break
-  fi
+   fi
 
-  if [ $(sacct -u $USER -n --format State | tail -1) == "RUNNING" ]
-  then
-      echo "------ Job Status ----"
-      echo "Your Submitted Job is Running"
-      echo -e "----------------------\n\n"
-  fi
+   if [ $(sacct -u $USER -n --format State | tail -1) == "CANCELLED+" ]
+   then
+      echo "------ Job Status -------------------"
+      echo "Your submitted Job has been cancelled!"
+      echo -e "--------------------------------------\n\n"
+      break
+   fi
+
+   if [ $(sacct -u $USER -n --format State | tail -1) == "RUNNING" ]
+   then
+      echo "------ Job Status --------------"
+      echo "Your submitted Job is Running!"
+      echo -e "-------------------------------\n\n"
+   fi
 
   #echo $running_flag
 
