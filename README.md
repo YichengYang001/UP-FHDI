@@ -12,7 +12,7 @@ Graphical user interface for ultra data-oriented parallel fractional hot-deck im
 
 
 
-Please see a tutorial video in [Tutorial for GUI](https://www.youtube.com/results?search_query=up-fhdi) to illustrate the use of UP-FHDI software with example datasets.
+Please see a tutorial video in [Tutorial for GUI](https://www.youtube.com/watch?v=7dZcUYYGyMw&t=331s) to illustrate the use of UP-FHDI software with example datasets.
 
 # Benchmarks
 
