@@ -41,7 +41,7 @@ else
 fi
 
 #Run GUI
-python UP-FHDI.py #&
+python GUI.py #&
 
 sleep 3 #avoid incorrect COMPLETE print, let bullet fly three second
 echo -e "\n"
