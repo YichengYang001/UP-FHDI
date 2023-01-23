@@ -42,7 +42,7 @@ source auto.sh
 Please kindly cite the following papers if you find this software useful. Thanks!
 - Yicheng Yang and Qi Li, 2023. UP-FHDI: a software for big incomplete data curing, _ISU Digital Repository_.
 - Yicheng Yang, Yonghyun Kwon, Jaekwang Kim, and In Ho Cho, 2022. Ultra data-oriented parallel fractional hot-deck imputation with efficient linearized variance estimation,  _IEEE Transactions on Knowledge and Data Engineering_ (revision invited).
-- Yicheng Yang, Jaekwang Kim, and In Ho Cho, 2020. Parallel fractional hot-deck imputation and variance estimation for big incomplete data curing, _IEEE Transactions on Knowledge and Data Engineering_ 34(8), 3912-3926 [DOI: 10.1109/TKDE.2020.3029146].
+- Yicheng Yang, Jaekwang Kim, and In Ho Cho, 2020. [Parallel fractional hot-deck imputation and variance estimation for big incomplete data curing](https://ieeexplore.ieee.org/document/9214981), _IEEE Transactions on Knowledge and Data Engineering_ 34(8), 3912-3926 [DOI: 10.1109/TKDE.2020.3029146].
 
 ```latex
 @InProceedings{Yicheng:2023,
