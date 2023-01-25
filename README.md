@@ -32,8 +32,6 @@ Please see a tutorial video in [Tutorial for GUI](https://www.youtube.com/watch?
 - Intel MPI
 
 UP-FHDI software is recommended to be used on Windows since compatibility on Mac has not been broadly validated. Please see [X Forwarding for Mac and Windows](https://researchit.las.iastate.edu/guides/pronto/interactive_computing/x_forwarding/) to configure PuTTY to work with VcXsrv.
-
-
 ## GUI extension
 The following table summarizes the code changes to extend GUI to be applicable to other HPC facilities. Please see more details in GUI_Extension_Summary.pdf.
 
@@ -43,8 +41,6 @@ The following table summarizes the code changes to extend GUI to be applicable t
 | auto.sh |  Check command compatibility to monitor job status |  Lines 49, 70,78, 86 |
 | submit_terminate.py | Add new job script specifications | Lines 279-287 |
 | GUI.py |  Add new HPC facilities to the drop-down list | Line 853 |
-
-
 ## Command
 Run the following command on HPC for a quick deployment:
 ```python
