@@ -41,7 +41,6 @@ The following table summarizes the code changes to extend GUI to be applicable t
 | auto.sh |  Check command compatibility to monitor job status |  Lines 49, 70,78, 86 |
 | submit_terminate.py | Add new job script specifications | Lines 279-287 |
 | GUI.py |  Add new HPC facilities to the drop-down list | Line 853 |
-
 <br/><br/>
 ## Command
 Run the following command on HPC for a quick deployment:
