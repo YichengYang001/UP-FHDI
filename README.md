@@ -23,9 +23,8 @@ Please see a tutorial video in [Tutorial for GUI](https://www.youtube.com/watch?
 | Bias.txt  | 2100  | 23 | 30% | Yes | Tab |NA |UCI repository |
 
 # Usage
-====
+
 ## Dependencie
------
 
 - [VcXsrv](https://sourceforge.net/projects/vcxsrv/)
 - [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
