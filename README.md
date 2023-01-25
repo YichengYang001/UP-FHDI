@@ -5,7 +5,7 @@ Graphical user interface for ultra data-oriented parallel fractional hot-deck im
 - [Benchmarks](#Benchmarks)
 - [Usage](#Usage)
   - [Dependencies](#Dependencies)
-  - [GUI extension](#GUI extension)
+  - [GUI extension](#GUIextension)
   - [Command](#Command)
 - [Citation](#Citation)
 - [Acknowledgements](#Acknowledgements)
