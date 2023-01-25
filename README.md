@@ -31,7 +31,8 @@ Please see a tutorial video in [Tutorial for GUI](https://www.youtube.com/watch?
 - Intel MPI
 
 UP-FHDI software is recommended to be used on Windows since compatibility on Mac has not been broadly validated. Please see [X Forwarding for Mac and Windows](https://researchit.las.iastate.edu/guides/pronto/interactive_computing/x_forwarding/) to configure PuTTY to work with VcXsrv.
-<br/><br/>
+
+
 ## GUI extension
 The following table summarizes the code changes to extend GUI to be applicable to other HPC facilities. Please see more details in GUI_Extension_Summary.pdf.
 
