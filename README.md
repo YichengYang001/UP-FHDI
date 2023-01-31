@@ -24,7 +24,7 @@ Please see a tutorial video in [Tutorial for GUI](https://www.youtube.com/watch?
 
 # Usage
 
-## Dependencie
+## Dependencies
 
 - [VcXsrv](https://sourceforge.net/projects/vcxsrv/)
 - [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
